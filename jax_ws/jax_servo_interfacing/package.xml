@@ -1,1 +1,15 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>jax_servo_interfacing</name>
+  <version>0.0.0</version>
+  <description>Servo hardware interface for Jax quadruped</description>
 
+  <maintainer email="todo@todo.com">Tim Powell</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <!-- Runtime dependencies -->
+  <exec_depend>python3</exec_depend>
+
+</package>
