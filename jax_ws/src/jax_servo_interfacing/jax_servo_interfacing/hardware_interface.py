@@ -17,7 +17,7 @@ class JaxHardwareInterface:
         self.pwm_min = 370
         self.link = link
         self.servo_angles = np.zeros((3, 4))
-        self.kit = ServoKit(channels=16)
+        self.kit = ServoKit(channels=16) # Defininng a new set of servos uising the Adafruit ServoKit LIbrary
 
         # Servo board pin mapping
         self.pins = np.array([
