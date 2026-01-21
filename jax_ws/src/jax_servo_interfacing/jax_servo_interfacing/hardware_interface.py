@@ -1,3 +1,8 @@
+"""
+Pure hardware interface for Jax quadruped servos
+This module is ROS-agnostic and should be called by a ROS 2 node
+"""
+
 #!/usr/bin/env python3
 from adafruit_servokit import ServoKit
 import numpy as np
@@ -56,7 +61,7 @@ class JaxHardwareInterface():
             self.kit.servo[i].actuation_range = 180
             self.kit.servo[i].set_pulse_width_range(self.pwm_min, self.pwm_max)
 
-    def set_actuator_postions(self, joint_angles):
+    def set_actuator_positions(self, joint_angles):
         """Converts all angles found via inverse kinematics to the angles needed at the servo by applying multipliers
         and offsets for complimentary angles.
         It then outputs the correct angle to the servo via the adafruit servokit library. 
