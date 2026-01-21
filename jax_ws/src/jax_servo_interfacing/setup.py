@@ -14,8 +14,7 @@ setup(
     license='MIT',
     tests_require=['pytest'],
     entry_points={
-        'console_scripts': [
-            'hardware_interface = 
+        'console_scripts': [hardware_interface = 
     jax_servo_interfacing.hardware_interface:main',
         ],
     },
