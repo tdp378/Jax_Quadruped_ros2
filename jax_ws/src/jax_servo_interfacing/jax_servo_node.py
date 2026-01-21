@@ -1,70 +1,60 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3 
 
 import rclpy
 from rclpy.node import Node
-from sensor_msgs.msg import JointState
+
 import numpy as np
 
-# Import hardware layer
-from jax_servo_interfacing.hardware.hardware_interface import JaxHardwareInterface
+# Import your hardware layer
+from jax_servo_interfacing.hardware.hardware_interface import HardwareInterface
 
 
 class JaxServoNode(Node):
+    """
+    ROS 2 node responsible for commanding the JAX quadruped servos.
+    """
+
     def __init__(self):
         super().__init__('jax_servo_node')
 
-        # Parameters
-        self.declare_parameter('dry_run', True)
-        self.declare_parameter('update_rate', 50.0)
+        self.get_logger().info('Starting JAX Servo Node')
 
-        self.dry_run = self.get_parameter('dry_run').value
+        # -----------------------------
+        # Hardware interface
+        # -----------------------------
+        # NOTE: link is None for now.
+        # Later this will be replaced with your linkage/config object.
+        self.hardware = HardwareInterface(link=None)
 
-        # Subscriber
-        self.subscription = self.create_subscription(
-            JointState,
-            '/jax/joint_commands',
-            self.joint_command_callback,
-            10
-        )
+        # -----------------------------
+        # Temporary test timer
+        # -----------------------------
+        # This lets us test the node WITHOUT ROS topics or hardware
+        self.timer = self.create_timer(2.0, self.test_motion)
 
-        self.get_logger().info(
-            f'Jax Servo Node started (dry_run={self.dry_run})'
-        )
+        self.get_logger().info('JAX Servo Node initialized')
 
-        # Hardware interface (only if not dry-run)
-        self.hardware = None
-        if not self.dry_run:
-            self.get_logger().info('Initializing hardware interface...')
-            self.hardware = JaxHardwareInterface(link=None)  # link passed later
-
-    def joint_command_callback(self, msg: JointState):
+    def test_motion(self):
         """
-        Expects joint angles in radians.
-        Order: [hip, shoulder, knee] for each leg.
+        Temporary test function.
+        Sends a neutral pose to the hardware interface.
+        This will be removed once we add real subscriptions.
         """
-        if len(msg.position) != 12:
-            self.get_logger().error(
-                f'Expected 12 joint angles, got {len(msg.position)}'
-            )
-            return
 
-        # Convert to 3x4 numpy array
-        joint_angles = np.array(msg.position).reshape((4, 3)).T
+        self.get_logger().info('Sending test joint angles')
 
-        if self.dry_run:
-            self.get_logger().info(
-                f'[DRY RUN] Joint angles:\n{joint_angles}'
-            )
-            return
+        # 3 joints x 4 legs (radians)
+        joint_angles = np.zeros((3, 4))
 
         try:
-            self.hardware.set_actuator_positions(joint_angles)
+            self.hardware.set_actuator_postions(joint_angles)
         except Exception as e:
-            self.get_logger().error(f'Hardware error: {e}')
+            self.get_logger().warn(f'Hardware call failed: {e}')
 
 
 def main(args=None):
     rclpy.init(args=args)
+
     node = JaxServoNode()
 
     try:
@@ -78,4 +68,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
