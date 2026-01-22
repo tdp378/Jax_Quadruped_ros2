@@ -1,12 +1,9 @@
 <?xml version="1.0"?> <robot name="jax" 
 xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <!-- ---------------- --> <!-- 
-  Materials --> <!-- ---------------- --> 
-  <material name="black">
+  <!-- Materials --> <material 
+  name="black">
     <color rgba="0.1 0.1 0.1 1.0"/> 
-  </material> <!-- ---------------- --> 
-  <!-- Base link --> <!-- 
-  ---------------- --> <link 
+  </material> <!-- Base link --> <link 
   name="base_link">
     <visual> <geometry> <box size="0.25 
         0.15 0.05"/>
