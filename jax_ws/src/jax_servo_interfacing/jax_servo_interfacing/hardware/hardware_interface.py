@@ -1,4 +1,4 @@
-from typing import Optional, Dict 
+from typing import Dict, Optional
 
 # Try to import hardware libraries safely
 try:
@@ -14,9 +14,9 @@ class HardwareInterface:
     Low-level hardware interface for servo control.
 
     This class ONLY talks to hardware.
+    - No joint names
+    - No leg logic
     - No ROS
-    - No gait logic
-    - No IK
     """
 
     def __init__(self, link: Optional[str] = None, enable_hardware: bool = True):
@@ -25,19 +25,6 @@ class HardwareInterface:
 
         self.num_channels = 16
         self.kit = None
-
-        # 🔹 TEMP joint → channel map
-        # (we will formalize this later)
-        self.joint_channel_map = {
-            "front_left_hip": 0,
-            "front_left_knee": 1,
-            "front_right_hip": 2,
-            "front_right_knee": 3,
-            "rear_left_hip": 4,
-            "rear_left_knee": 5,
-            "rear_right_hip": 6,
-            "rear_right_knee": 7,
-        }
 
         if self.enable_hardware:
             try:
@@ -56,6 +43,9 @@ class HardwareInterface:
     # -------------------------
 
     def set_servo_angle(self, channel: int, angle: float):
+        """
+        Set a servo angle on a given PCA9685 channel.
+        """
         if not 0 <= channel < self.num_channels:
             raise ValueError(f"Invalid servo channel: {channel}")
 
@@ -64,7 +54,19 @@ class HardwareInterface:
         else:
             print(f"[HardwareInterface] (SIM) Channel {channel} -> {angle:.2f}°")
 
+    def set_multiple_joints(self, channel_angle_map: Dict[int, float]):
+        """
+        Set multiple servos at once.
+
+        :param channel_angle_map: {channel: angle_degrees}
+        """
+        for channel, angle in channel_angle_map.items():
+            self.set_servo_angle(channel, angle)
+
     def disable_servo(self, channel: int):
+        """
+        Disable a servo output.
+        """
         if not 0 <= channel < self.num_channels:
             raise ValueError(f"Invalid servo channel: {channel}")
 
@@ -73,29 +75,10 @@ class HardwareInterface:
         else:
             print(f"[HardwareInterface] (SIM) Channel {channel} disabled")
 
-    # -------------------------
-    # Joint-level API (THIS fixes your error)
-    # -------------------------
-
-    def set_joint_angle(self, joint_name: str, angle: float):
-        if joint_name not in self.joint_channel_map:
-            raise KeyError(f"Unknown joint: {joint_name}")
-
-        channel = self.joint_channel_map[joint_name]
-        self.set_servo_angle(channel, angle)
-
-    def set_multiple_joints(self, joint_angles: Dict[str, float]):
-        """
-        joint_angles: { joint_name: angle }
-        """
-        for joint, angle in joint_angles.items():
-            self.set_joint_angle(joint, angle)
-
-    # -------------------------
-    # Shutdown
-    # -------------------------
-
     def shutdown(self):
+        """
+        Safely disable all servos.
+        """
         print("[HardwareInterface] Shutting down servos")
         for ch in range(self.num_channels):
             try:
