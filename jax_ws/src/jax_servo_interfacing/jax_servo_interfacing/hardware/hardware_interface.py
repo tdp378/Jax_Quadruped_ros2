@@ -1,4 +1,6 @@
-from typing import Dict, Optional
+from typing import Optional 
+
+import numpy as np
 
 # Try to import hardware libraries safely
 try:
@@ -14,12 +16,16 @@ class HardwareInterface:
     Low-level hardware interface for servo control.
 
     This class ONLY talks to hardware.
-    - No joint names
-    - No leg logic
     - No ROS
+    - No leg logic
+    - No joint names
     """
 
     def __init__(self, link: Optional[str] = None, enable_hardware: bool = True):
+        """
+        :param link: Placeholder for future transport abstraction (unused for now)
+        :param enable_hardware: If False, runs in simulation / dry-run mode
+        """
         self.link = link
         self.enable_hardware = enable_hardware and HARDWARE_AVAILABLE
 
@@ -45,6 +51,9 @@ class HardwareInterface:
     def set_servo_angle(self, channel: int, angle: float):
         """
         Set a servo angle on a given PCA9685 channel.
+
+        :param channel: PCA9685 channel (0–15)
+        :param angle: Servo angle in degrees
         """
         if not 0 <= channel < self.num_channels:
             raise ValueError(f"Invalid servo channel: {channel}")
@@ -53,15 +62,6 @@ class HardwareInterface:
             self.kit.servo[channel].angle = angle
         else:
             print(f"[HardwareInterface] (SIM) Channel {channel} -> {angle:.2f}°")
-
-    def set_multiple_joints(self, channel_angle_map: Dict[int, float]):
-        """
-        Set multiple servos at once.
-
-        :param channel_angle_map: {channel: angle_degrees}
-        """
-        for channel, angle in channel_angle_map.items():
-            self.set_servo_angle(channel, angle)
 
     def disable_servo(self, channel: int):
         """
@@ -75,11 +75,51 @@ class HardwareInterface:
         else:
             print(f"[HardwareInterface] (SIM) Channel {channel} disabled")
 
+    # -------------------------
+    # Batch joint control
+    # -------------------------
+
+    def set_multiple_joints(self, joint_angles: np.ndarray):
+        """
+        Set multiple joint angles at once.
+
+        Expected input:
+            joint_angles: numpy array of shape (3, 4)
+                - 3 joints per leg
+                - 4 legs
+
+        Temporary channel mapping:
+            channel = joint_index * 4 + leg_index
+        """
+
+        if not isinstance(joint_angles, np.ndarray):
+            raise TypeError("joint_angles must be a numpy array")
+
+        if joint_angles.shape != (3, 4):
+            raise ValueError(
+                f"Expected joint_angles shape (3, 4), got {joint_angles.shape}"
+            )
+
+        for joint_idx in range(3):
+            for leg_idx in range(4):
+                channel = joint_idx * 4 + leg_idx
+                angle_rad = joint_angles[joint_idx, leg_idx]
+
+                # Convert radians → degrees for servos
+                angle_deg = np.degrees(angle_rad)
+
+                self.set_servo_angle(channel, angle_deg)
+
+    # -------------------------
+    # Shutdown
+    # -------------------------
+
     def shutdown(self):
         """
         Safely disable all servos.
         """
         print("[HardwareInterface] Shutting down servos")
+
         for ch in range(self.num_channels):
             try:
                 self.disable_servo(ch)
