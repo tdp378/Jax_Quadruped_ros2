@@ -1,0 +1,23 @@
+<?xml version="1.0"?> <robot name="jax" 
+xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- ---------------- --> <!-- 
+  Materials --> <!-- ---------------- --> 
+  <material name="black">
+    <color rgba="0.1 0.1 0.1 1.0"/> 
+  </material> <!-- ---------------- --> 
+  <!-- Base link --> <!-- 
+  ---------------- --> <link 
+  name="base_link">
+    <visual> <geometry> <box size="0.25 
+        0.15 0.05"/>
+      </geometry> <material 
+      name="black"/>
+    </visual> <collision> <geometry> <box 
+        size="0.25 0.15 0.05"/>
+      </geometry> </collision> <inertial> 
+      <mass value="3.0"/> <origin xyz="0 
+      0 0"/> <inertia
+        ixx="0.02" ixy="0.0" ixz="0.0" 
+        iyy="0.04" iyz="0.0" izz="0.05"/>
+    </inertial> </link>
+</robot>

@@ -1,0 +1,12 @@
+package.xml
+setup.cfg
+setup.py
+jax_description/__init__.py
+jax_description.egg-info/PKG-INFO
+jax_description.egg-info/SOURCES.txt
+jax_description.egg-info/dependency_links.txt
+jax_description.egg-info/entry_points.txt
+jax_description.egg-info/requires.txt
+jax_description.egg-info/top_level.txt
+jax_description.egg-info/zip-safe
+resource/jax_description

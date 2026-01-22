@@ -1,0 +1,26 @@
+[2.490s] Invoking command in '/home/tdp378/Jax_Quadruped_ros2/jax_ws/build/jax_servo_interfacing': PYTHONPATH=/home/tdp378/Jax_Quadruped_ros2/jax_ws/build/jax_servo_interfacing/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tdp378/Jax_Quadruped_ros2/jax_ws/install/jax_servo_interfacing/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/tdp378/Jax_Quadruped_ros2/jax_ws/build/jax_servo_interfacing/build --no-deps symlink_data
+[3.488s] running develop
+[4.062s] running egg_info
+[4.062s] creating jax_servo_interfacing.egg-info
+[4.062s] writing jax_servo_interfacing.egg-info/PKG-INFO
+[4.063s] writing dependency_links to jax_servo_interfacing.egg-info/dependency_links.txt
+[4.064s] writing entry points to jax_servo_interfacing.egg-info/entry_points.txt
+[4.064s] writing requirements to jax_servo_interfacing.egg-info/requires.txt
+[4.065s] writing top-level names to jax_servo_interfacing.egg-info/top_level.txt
+[4.066s] writing manifest file 'jax_servo_interfacing.egg-info/SOURCES.txt'
+[4.072s] reading manifest file 'jax_servo_interfacing.egg-info/SOURCES.txt'
+[4.075s] writing manifest file 'jax_servo_interfacing.egg-info/SOURCES.txt'
+[4.080s] running build_ext
+[4.081s] Creating /home/tdp378/Jax_Quadruped_ros2/jax_ws/install/jax_servo_interfacing/lib/python3.10/site-packages/jax-servo-interfacing.egg-link (link to .)
+[4.085s] Installing jax_servo_node script to /home/tdp378/Jax_Quadruped_ros2/jax_ws/install/jax_servo_interfacing/lib/jax_servo_interfacing
+[4.086s] 
+[4.086s] Installed /home/tdp378/Jax_Quadruped_ros2/jax_ws/build/jax_servo_interfacing
+[4.087s] running symlink_data
+[4.087s] creating /home/tdp378/Jax_Quadruped_ros2/jax_ws/install/jax_servo_interfacing/share/ament_index
+[4.088s] creating /home/tdp378/Jax_Quadruped_ros2/jax_ws/install/jax_servo_interfacing/share/ament_index/resource_index
+[4.088s] creating /home/tdp378/Jax_Quadruped_ros2/jax_ws/install/jax_servo_interfacing/share/ament_index/resource_index/packages
+[4.089s] symbolically linking /home/tdp378/Jax_Quadruped_ros2/jax_ws/build/jax_servo_interfacing/resource/jax_servo_interfacing -> /home/tdp378/Jax_Quadruped_ros2/jax_ws/install/jax_servo_interfacing/share/ament_index/resource_index/packages
+[4.089s] symbolically linking /home/tdp378/Jax_Quadruped_ros2/jax_ws/build/jax_servo_interfacing/package.xml -> /home/tdp378/Jax_Quadruped_ros2/jax_ws/install/jax_servo_interfacing/share/jax_servo_interfacing
+[4.089s] creating /home/tdp378/Jax_Quadruped_ros2/jax_ws/install/jax_servo_interfacing/share/jax_servo_interfacing/launch
+[4.090s] symbolically linking /home/tdp378/Jax_Quadruped_ros2/jax_ws/build/jax_servo_interfacing/launch/jax_servo.launch.py -> /home/tdp378/Jax_Quadruped_ros2/jax_ws/install/jax_servo_interfacing/share/jax_servo_interfacing/launch
+[4.216s] Invoked command in '/home/tdp378/Jax_Quadruped_ros2/jax_ws/build/jax_servo_interfacing' returned '0': PYTHONPATH=/home/tdp378/Jax_Quadruped_ros2/jax_ws/build/jax_servo_interfacing/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tdp378/Jax_Quadruped_ros2/jax_ws/install/jax_servo_interfacing/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/tdp378/Jax_Quadruped_ros2/jax_ws/build/jax_servo_interfacing/build --no-deps symlink_data
