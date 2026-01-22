@@ -1,5 +1,3 @@
-cmake
-
 cmake_minimum_required(VERSION 3.8)
 project(jax_servo_interfacing)
 
@@ -14,3 +12,4 @@ install(
 )
 
 ament_package()
+
