@@ -1,63 +1,89 @@
-import math
+# jax_servo_interfacing/hardware/hardware_interface.py
+
+from typing import Optional
+
+# Try to import hardware libraries safely
+try:
+    from adafruit_servokit import ServoKit
+    HARDWARE_AVAILABLE = True
+except ImportError:
+    ServoKit = None
+    HARDWARE_AVAILABLE = False
 
 
 class HardwareInterface:
     """
-    Hardware abstraction layer for JAX servos.
+    Low-level hardware interface for servo control.
 
-    This class is intentionally dumb:
-    - It accepts joint names and angles
-    - It optionally forwards them to real hardware
-    - It does NOT know about ROS, gaits, or trajectories
+    This class ONLY talks to hardware.
+    - No joint names
+    - No leg logic
+    - No ROS
     """
 
-    def __init__(self, use_hardware: bool = False):
-        self.use_hardware = use_hardware
+    def __init__(self, link: Optional[str] = None, enable_hardware: bool = True):
+        """
+        :param link: Placeholder for future transport abstraction (unused for now)
+        :param enable_hardware: If False, runs in simulation / dry-run mode
+        """
+        self.link = link
+        self.enable_hardware = enable_hardware and HARDWARE_AVAILABLE
 
-        # Joint → PCA9685 channel mapping
-        # (placeholder — we will fill this in later)
-        self.joint_to_channel = {}
-
-        if self.use_hardware:
-            self._init_hardware()
-        else:
-            self._init_sim()
-
-    def _init_hardware(self):
-        # Import here so sim mode never touches I2C
-        from adafruit_servokit import ServoKit
-
-        self.kit = ServoKit(channels=16)
-
-        print("[HW] Servo hardware initialized")
-
-    def _init_sim(self):
+        self.num_channels = 16
         self.kit = None
-        print("[SIM] Hardware interface running in simulation mode")
 
-    def set_joint_angle(self, joint_name: str, angle_deg: float):
-        """
-        Command a joint to a specific angle (degrees).
-        """
-
-        angle_deg = float(angle_deg)
-
-        if self.use_hardware:
-            if joint_name not in self.joint_to_channel:
-                print(f"[HW WARNING] Unknown joint: {joint_name}")
-                return
-
-            channel = self.joint_to_channel[joint_name]
-
-            # Safety clamp
-            angle_deg = max(0.0, min(180.0, angle_deg))
-
-            self.kit.servo[channel].angle = angle_deg
+        if self.enable_hardware:
+            try:
+                self.kit = ServoKit(channels=self.num_channels)
+                print("[HardwareInterface] ServoKit initialized")
+            except Exception as e:
+                print(f"[HardwareInterface] Failed to initialize hardware: {e}")
+                print("[HardwareInterface] Falling back to no-hardware mode")
+                self.kit = None
+                self.enable_hardware = False
         else:
-            print(f"[SIM] {joint_name} -> {angle_deg:.1f}°")
+            print("[HardwareInterface] Running in no-hardware mode")
+
+    # -------------------------
+    # Core servo operations
+    # -------------------------
+
+    def set_servo_angle(self, channel: int, angle: float):
+        """
+        Set a servo angle on a given PCA9685 channel.
+
+        :param channel: PCA9685 channel (0–15)
+        :param angle: Servo angle in degrees
+        """
+        if not 0 <= channel < self.num_channels:
+            raise ValueError(f"Invalid servo channel: {channel}")
+
+        if self.enable_hardware and self.kit:
+            self.kit.servo[channel].angle = angle
+        else:
+            # Dry-run output for debugging / simulation
+            print(f"[HardwareInterface] (SIM) Channel {channel} -> {angle:.2f}°")
+
+    def disable_servo(self, channel: int):
+        """
+        Disable a servo output (sets pulse to None).
+        """
+        if not 0 <= channel < self.num_channels:
+            raise ValueError(f"Invalid servo channel: {channel}")
+
+        if self.enable_hardware and self.kit:
+            self.kit.servo[channel].angle = None
+        else:
+            print(f"[HardwareInterface] (SIM) Channel {channel} disabled")
 
     def shutdown(self):
         """
-        Called on node shutdown.
+        Safely disable all servos.
         """
-        print("[HW] Shutting down hardware interface")
+        print("[HardwareInterface] Shutting down servos")
+
+        for ch in range(self.num_channels):
+            try:
+                self.disable_servo(ch)
+            except Exception:
+                pass
