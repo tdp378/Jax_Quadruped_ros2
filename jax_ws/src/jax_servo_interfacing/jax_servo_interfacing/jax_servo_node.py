@@ -47,7 +47,7 @@ class JaxServoNode(Node):
         joint_angles = np.zeros((3, 4))
 
         try:
-            self.hardware.set_actuator_postions(joint_angles)
+            self.hardware.set_multiple_joints(joint_angles)
         except Exception as e:
             self.get_logger().warn(f'Hardware call failed: {e}')
 
