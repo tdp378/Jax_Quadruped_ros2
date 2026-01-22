@@ -1,71 +1,63 @@
-# jax_servo_interfacing/hardware/hardware_interface.py
-
-from typing import Dict
-
-try:
-    from adafruit_servokit import ServoKit
-    HARDWARE_LIB_AVAILABLE = True
-except ImportError as e:
-    ServoKit = None
-    HARDWARE_LIB_AVAILABLE = False
-    print(f"[WARN] Adafruit ServoKit not available: {e}")
+import math
 
 
 class HardwareInterface:
     """
-    Low-level hardware interface for the PCA9685 servo controller.
-    This class MUST NOT crash if hardware is missing.
+    Hardware abstraction layer for JAX servos.
+
+    This class is intentionally dumb:
+    - It accepts joint names and angles
+    - It optionally forwards them to real hardware
+    - It does NOT know about ROS, gaits, or trajectories
     """
 
-    def __init__(self, link=None, i2c_address: int = 0x40, channels: int = 16):
-        self.link = link
-        self.i2c_address = i2c_address
-        self.channels = channels
+    def __init__(self, use_hardware: bool = False):
+        self.use_hardware = use_hardware
 
-        self.hardware_ok = False
+        # Joint → PCA9685 channel mapping
+        # (placeholder — we will fill this in later)
+        self.joint_to_channel = {}
+
+        if self.use_hardware:
+            self._init_hardware()
+        else:
+            self._init_sim()
+
+    def _init_hardware(self):
+        # Import here so sim mode never touches I2C
+        from adafruit_servokit import ServoKit
+
+        self.kit = ServoKit(channels=16)
+
+        print("[HW] Servo hardware initialized")
+
+    def _init_sim(self):
         self.kit = None
+        print("[SIM] Hardware interface running in simulation mode")
 
-        self._initialize_hardware()
-
-    def _initialize_hardware(self):
-        """Attempt to initialize servo hardware safely."""
-        if not HARDWARE_LIB_AVAILABLE:
-            print("[WARN] ServoKit library not available. Running in no-hardware mode.")
-            return
-
-        try:
-            self.kit = ServoKit(
-                channels=self.channels,
-                address=self.i2c_address
-            )
-            self.hardware_ok = True
-            print("[INFO] PCA9685 servo controller initialized successfully")
-
-        except Exception as e:
-            self.kit = None
-            self.hardware_ok = False
-            print(f"[WARN] PCA9685 not detected at 0x{self.i2c_address:02X}: {e}")
-            print("[WARN] Running in no-hardware mode")
-
-    def set_servo_angle(self, channel: int, angle: float):
+    def set_joint_angle(self, joint_name: str, angle_deg: float):
         """
-        Set a servo angle safely.
+        Command a joint to a specific angle (degrees).
         """
-        if not self.hardware_ok:
-            return
 
-        if channel < 0 or channel >= self.channels:
-            print(f"[WARN] Invalid servo channel: {channel}")
-            return
+        angle_deg = float(angle_deg)
 
-        try:
-            self.kit.servo[channel].angle = angle
-        except Exception as e:
-            print(f"[ERROR] Failed to set servo {channel}: {e}")
+        if self.use_hardware:
+            if joint_name not in self.joint_to_channel:
+                print(f"[HW WARNING] Unknown joint: {joint_name}")
+                return
+
+            channel = self.joint_to_channel[joint_name]
+
+            # Safety clamp
+            angle_deg = max(0.0, min(180.0, angle_deg))
+
+            self.kit.servo[channel].angle = angle_deg
+        else:
+            print(f"[SIM] {joint_name} -> {angle_deg:.1f}°")
 
     def shutdown(self):
         """
-        Clean shutdown hook.
+        Called on node shutdown.
         """
-        if self.hardware_ok:
-            print("[INFO] Shutting down servo hardware")
+        print("[HW] Shutting down hardware interface")
