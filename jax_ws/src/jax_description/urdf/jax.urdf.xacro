@@ -2,6 +2,18 @@
 <robot name="jax" 
 xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <!-- World link -->
+  <link name="world"/>
+
+  <!-- Fixed joint to base -->
+  <joint name="world_to_base" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+
+
   <!-- Materials -->
 <material name="black">
     <color rgba="0.1 0.1 0.1 1.0"/> 
