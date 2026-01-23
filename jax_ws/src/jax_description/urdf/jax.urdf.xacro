@@ -146,7 +146,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <joint name="front_right_knee_joint" type="revolute">
   <parent link="front_right_thigh"/>
   <child link="front_right_calf"/>
-  <origin xyz="0 0 0"/>
+  <origin xyz="0 0 -0.06"/>
   <axis xyz="0 -1 0"/>
   <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"/>
 </joint>
