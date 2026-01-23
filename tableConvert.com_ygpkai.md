@@ -4,16 +4,16 @@
 | Phase 0 — Repo & Workspace                 | Initialize git repo        | root              | Version control             | Complete |        |
 | Phase 0 — Repo & Workspace                 | .gitignore                 | root              | Ignore build/install/log    | Complete |        |
 | Phase 0 — Repo & Workspace                 | colcon build works         | all               | Clean build, no errors      | Complete |        |
-| Phase 1 — Robot Description (URDF/Xacro)   | Create description package | jax_description   | URDF-only package           |          |        |
-| Phase 1 — Robot Description (URDF/Xacro)   | Base link defined          | jax.urdf.xacro    | base_link or base_footprint |          |        |
+| Phase 1 — Robot Description (URDF/Xacro)   | Create description package | jax_description   | URDF-only package           | Complete |        |
+| Phase 1 — Robot Description (URDF/Xacro)   | Base link defined          | jax.urdf.xacro    | base_link or base_footprint | Complete |        |
 | Phase 1 — Robot Description (URDF/Xacro)   | Visual meshes load         | meshes/*          | STL/DAE visible in RViz     |          |        |
 | Phase 1 — Robot Description (URDF/Xacro)   | Collision geometry defined | URDF              | Simplified shapes           |          |        |
 | Phase 1 — Robot Description (URDF/Xacro)   | Inertial blocks defined    | URDF              | Mass + inertia per link     |          |        |
 | Phase 1 — Robot Description (URDF/Xacro)   | Leg macro created          | leg.urdf.xacro    | Parametric leg definition   |          |        |
 | Phase 1 — Robot Description (URDF/Xacro)   | 4 legs instantiated        | jax.urdf.xacro    | fl / fr / rl / rr           |          |        |
-| Phase 1 — Robot Description (URDF/Xacro)   | Joint axes verified        | URDF              | Correct rotation directions |          |        |
-| Phase 1 — Robot Description (URDF/Xacro)   | Joint limits set           | URDF              | Safe limits                 |          |        |
-| Phase 1 — Robot Description (URDF/Xacro)   | No TF loops                | TF tree           | Single root                 |          |        |
+| Phase 1 — Robot Description (URDF/Xacro)   | Joint axes verified        | URDF              | Correct rotation directions | Complete |        |
+| Phase 1 — Robot Description (URDF/Xacro)   | Joint limits set           | URDF              | Safe limits                 | Complete |        |
+| Phase 1 — Robot Description (URDF/Xacro)   | No TF loops                | TF tree           | Single root                 | Complete |        |
 | Phase 2 — State Publishing & Visualization | robot_state_publisher      | launch            | Publishes TF                | Complete |        |
 | Phase 2 — State Publishing & Visualization | joint_state_publisher      | launch            | Manual joint control        | Complete |        |
 | Phase 2 — State Publishing & Visualization | RViz config saved          | rviz/*.rviz       | Consistent view             | Complete |        |
