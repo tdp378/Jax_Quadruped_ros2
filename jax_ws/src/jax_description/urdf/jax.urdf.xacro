@@ -97,7 +97,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <child link="front_right_calf"/>
   <origin xyz="0 0 -0.12"/>
   <axis xyz="0 -1 0"/>
-  <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"/>
+  <limit lower="0.0" upper="1.57" effort="1.0" velocity="1.0"/>
 </joint>
 
 <!-- FRONT LEFT LEG -->
@@ -150,7 +150,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <child link="front_left_calf"/>
   <origin xyz="0 0 -0.12"/>
   <axis xyz="0 1 0"/>
-  <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"/>
+  <limit lower="0.0" upper="1.57" effort="1.0" velocity="1.0"/>
 </joint>
 
 <!-- REAR RIGHT LEG -->
@@ -203,7 +203,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <child link="rear_right_calf"/>
   <origin xyz="0 0 -0.12"/>
   <axis xyz="0 -1 0"/>
-  <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"/>
+  <limit lower="0.0" upper="1.57" effort="1.0" velocity="1.0"/>
 </joint>
 
 <!-- REAR LEFT LEG -->
@@ -256,7 +256,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <child link="rear_left_calf"/>
   <origin xyz="0 0 -0.12"/>
   <axis xyz="0 1 0"/>
-  <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"/>
+  <limit lower="0.0" upper="1.57" effort="1.0" velocity="1.0"/>
 </joint>
 
 
