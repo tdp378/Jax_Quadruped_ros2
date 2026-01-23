@@ -47,11 +47,15 @@
 | Phase 6 — Sensors & State                  | ToF URDF frame             | URDF              | tof_link                    |          |        |
 | Phase 6 — Sensors & State                  | Tof driver node            | tof_node.py       | Publishes range/image       |          |        |
 | Phase 6 — Sensors & State                  | Obstacle threshold logic   | obstacle_guard.py | Stop gait                   |          |        |
-| Phase 7 — LCD Display (Pi)                 | Waveshare driver tested    | standalone        | SPI works                   |          |        |
-| Phase 7 — LCD Display (Pi)                 | LCD ROS package            | jax_lcd           | Python node                 |          |        |
-| Phase 7 — LCD Display (Pi)                 | Battery subscribe          | lcd_node          | Shows %                     |          |        |
-| Phase 7 — LCD Display (Pi)                 | Mode display               | lcd_node          | IDLE/WALK                   |          |        |
-| Phase 7 — LCD Display (Pi)                 | Refresh throttling         | lcd_node          | Low CPU                     |          |        |
+| Phase 7 — User Interface / Feedback        | Waveshare LCD driver       | standalone        | SPI works                   |          |        |
+| Phase 7 — User Interface / Feedback        | LCD ROS package            | jax_lcd           | Python node                 |          |        |
+| Phase 7 — User Interface / Feedback        | Battery subscribe          | lcd_node          | Shows %                     |          |        |
+| Phase 7 — User Interface / Feedback        | Mode display               | lcd_node          | IDLE/WALK                   |          |        |
+| Phase 7 — User Interface / Feedback        | Refresh throttling         | lcd_node          | Low CPU                     |          |        |
+| Phase 7 — User Interface / Feedback        | Audio Device enable        | OS                | /boot/config.txt            |          |        |
+| Phase 7 — User Interface / Feedback        | Speaker output verified    | NA                | aplay / speaker-test        |          |        |
+| Phase 7 — User Interface / Feedback        | Audio ROS node             | audio_node.py     | jax_audio                   |          |        |
+| Phase 7 — User Interface / Feedback        | Audio event mapping        | sounds/*.wav      | jax_audio                   |          |        |
 | Phase 8 — Hardware Interface (Real Robot)  | Servo hardware interface   | ros2_control      | Custom plugin               |          |        |
 | Phase 8 — Hardware Interface (Real Robot)  | Replace fake hardware      | URDF              | Real IO                     |          |        |
 | Phase 8 — Hardware Interface (Real Robot)  | Servo calibration          | config            | Zero offsets                |          |        |
