@@ -44,6 +44,59 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
     </inertial> 
 </link>
 
+  <!-- FRONT LEFT LEG -->
+
+  <link name="front_left_hip">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.02"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="front_left_hip_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="front_left_hip"/>
+    <origin xyz="0.12 0.08 0.0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"/>
+  </joint>
+
+  <link name="front_left_thigh">
+    <visual>
+      <geometry>
+        <cylinder length="0.12" radius="0.015"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="front_left_thigh_joint" type="revolute">
+    <parent link="front_left_hip"/>
+    <child link="front_left_thigh"/>
+    <origin xyz="0 0 -0.06"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"/>
+  </joint>
+
+  <link name="front_left_calf">
+    <visual>
+      <geometry>
+        <cylinder length="0.12" radius="0.012"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="front_left_knee_joint" type="revolute">
+    <parent link="front_left_thigh"/>
+    <child link="front_left_calf"/>
+    <origin xyz="0 0 -0.12"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"/>
+  </joint>
+
+
+
 <!-- ============================= -->
 <!-- Front Left Hip -->
 <!-- ============================= -->
