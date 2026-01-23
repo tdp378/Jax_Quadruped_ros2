@@ -136,7 +136,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <link name="front_right_calf">
     <visual>
-      <origin xyz="0 0 -0.18"/>
+      <origin xyz="0 0 -0.6"/>
       <geometry>
         <cylinder length="0.12" radius="0.012"/>
       </geometry>
@@ -144,12 +144,13 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   </link>
 
   <joint name="front_right_knee_joint" type="revolute">
-    <parent link="front_right_thigh"/>
-    <child link="front_right_calf"/>
-    <origin xyz="0 0 -0.06"/>
-    <axis xyz="0 -1 0"/>
-    <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"/>
-  </joint>
+  <parent link="front_right_thigh"/>
+  <child link="front_right_calf"/>
+  <origin xyz="0 0 -0.12"/>
+  <axis xyz="0 -1 0"/>
+  <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"/>
+</joint>
+
 
 
 
