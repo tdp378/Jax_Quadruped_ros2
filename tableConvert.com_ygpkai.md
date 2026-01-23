@@ -41,6 +41,12 @@
 | Phase 6 — Sensors & State                  | IMU integration            | imu_node          | Orientation data            |          |        |
 | Phase 6 — Sensors & State                  | Sensor TF frames           | URDF              | imu_link etc                |          |        |
 | Phase 6 — Sensors & State                  | State aggregation          | robot_state       | Mode / error flags          |          |        |
+| Phase 6 — Sensors & State                  | IMU URDOF Frame            | URDF              | imu_link +TF                |          |        |
+| Phase 6 — Sensors & State                  | IMU Driver Node            | jax_imu           | Publishes /imu data         |          |        |
+| Phase 6 — Sensors & State                  | IMU orientation verified   | jax.rviz          | RViz Axes                   |          |        |
+| Phase 6 — Sensors & State                  | ToF URDF frame             | URDF              | tof_link                    |          |        |
+| Phase 6 — Sensors & State                  | Tof driver node            | tof_node.py       | Publishes range/image       |          |        |
+| Phase 6 — Sensors & State                  | Obstacle threshold logic   | obstacle_guard.py | Stop gait                   |          |        |
 | Phase 7 — LCD Display (Pi)                 | Waveshare driver tested    | standalone        | SPI works                   |          |        |
 | Phase 7 — LCD Display (Pi)                 | LCD ROS package            | jax_lcd           | Python node                 |          |        |
 | Phase 7 — LCD Display (Pi)                 | Battery subscribe          | lcd_node          | Shows %                     |          |        |
