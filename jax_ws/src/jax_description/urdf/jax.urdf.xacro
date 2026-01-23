@@ -116,19 +116,20 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 </joint>
 
 
+<link name="front_right_thigh">
+  <visual>
+    <origin xyz="0 0 -0.06"/>
+    <geometry>
+      <cylinder length="0.12" radius="0.015"/>
+    </geometry>
+  </visual>
+</link>
 
-  <link name="front_right_thigh">
-    <visual>
-      <geometry>
-        <cylinder length="0.12" radius="0.015"/>
-      </geometry>
-    </visual>
-  </link>
 
   <joint name="front_right_thigh_joint" type="revolute">
     <parent link="front_right_hip"/>
     <child link="front_right_thigh"/>
-    <origin xyz="0 0 -0.06"/>
+    <origin xyz="0 0 0"/>
     <axis xyz="0 -1 0"/>
     <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"/>
   </joint>
