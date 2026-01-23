@@ -118,7 +118,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <link name="front_right_thigh">
   <visual>
-    <origin xyz="0 0 -0.06"/>
+    <origin xyz="0 0 0.06"/>
     <geometry>
       <cylinder length="0.12" radius="0.015"/>
     </geometry>
