@@ -59,7 +59,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
     <parent link="base_link"/>
     <child link="front_left_hip"/>
     <origin xyz="0.12 0.08 0.0"/>
-    <axis xyz="0 1 0"/>
+    <axis xyz="0 0 1"/>
     <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"/>
   </joint>
 
@@ -110,7 +110,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
     <parent link="base_link"/>
     <child link="front_right_hip"/>
     <origin xyz="0.12 -0.08 0.0"/>
-    <axis xyz="0 -1 0"/>
+    <axis xyz="0 0 -1"/>
     <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"/>
   </joint>
 
