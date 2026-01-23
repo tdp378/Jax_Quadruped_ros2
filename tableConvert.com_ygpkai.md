@@ -41,7 +41,6 @@
 | Phase 6 — Sensors & State                  | IMU integration            | imu_node          | Orientation data            |          |        |
 | Phase 6 — Sensors & State                  | Sensor TF frames           | URDF              | imu_link etc                |          |        |
 | Phase 6 — Sensors & State                  | State aggregation          | robot_state       | Mode / error flags          |          |        |
-| Phase 7 — LCD Display (Pi)                 |                            |                   |                             |          |        |
 | Phase 7 — LCD Display (Pi)                 | Waveshare driver tested    | standalone        | SPI works                   |          |        |
 | Phase 7 — LCD Display (Pi)                 | LCD ROS package            | jax_lcd           | Python node                 |          |        |
 | Phase 7 — LCD Display (Pi)                 | Battery subscribe          | lcd_node          | Shows %                     |          |        |
