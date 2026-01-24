@@ -79,13 +79,14 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <limit lower="-0.6" upper="0.6" effort="1.0" velocity="1.0"/>
 </joint>
 
+<!-- x y z up and down -->
 
 <link name="front_right_thigh">
   <visual>
-    <origin xyz="-0.01 -0.03 0" rpy="1.5708 1.5708 0"/>
+    <origin xyz="0.06 0.01 0.03" rpy="1.5708 0 1.5708"/>
     <geometry>
           <mesh filename="package://jax_description/meshes/front_right_thigh.stl"
-          scale="1 1 1"/>
+          scale=".001 .001 .001"/>
   </geometry>
   </visual>
 </link>
