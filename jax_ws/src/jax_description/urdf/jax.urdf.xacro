@@ -19,30 +19,36 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
     <color rgba="0.1 0.1 0.1 1.0"/> 
   </material>
 
+
 <!-- Base link -->
 <link name="base_link">
-    <visual>
-      <geometry> 
-          <box size="0.25 0.15 0.05"/>
-      </geometry>
-      <material name="black"/>
-    </visual>
 
-<collision>
+  <visual>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
   <geometry>
     <mesh filename="package://jax_description/meshes/base_link.stl"
-            scale="0.001 0.001 0.001"/>
-  </geometry> 
+          scale="1 1 1"/>
+  </geometry>
+  <material name="black"/>
+</visual>
+
+<collision>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="package://jax_description/meshes/base_collision.stl"
+          scale="1 1 1"/>
+  </geometry>
 </collision>
 
-    <inertial> 
-      <mass value="3.0"/>
-      <origin xyz="0 0 0"/>
-      <inertia
-        ixx="0.02" ixy="0.0" ixz="0.0" 
-        iyy="0.04" iyz="0.0"
-        izz="0.05"/>
-    </inertial> 
+  <inertial> 
+    <mass value="3.0"/>
+    <origin xyz="0 0 0"/>
+    <inertia
+      ixx="0.02" ixy="0.0" ixz="0.0" 
+      iyy="0.04" iyz="0.0"
+      izz="0.05"/>
+  </inertial> 
+
 </link>
 
   
@@ -69,12 +75,15 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <link name="front_right_thigh">
   <visual>
-    <origin xyz="0 0 -0.06"/>
+    <origin xyz="0 0 0" rpy="1.5708 1.5708 0"/>
     <geometry>
-         <cylinder length="0.12" radius="0.015"/> 
+          <mesh filename="package://jax_description/meshes/front_right_thigh.stl"
+          scale="1 1 1"/>
   </geometry>
   </visual>
 </link>
+
+
 
   <joint name="front_right_thigh_joint" type="revolute">
     <parent link="front_right_hip"/>

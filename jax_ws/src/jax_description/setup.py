@@ -21,6 +21,10 @@ setup(
         (os.path.join('share', package_name, 'urdf'),
             glob('urdf/*')),
 
+        # Install mesh files
+        (os.path.join('share', package_name, 'meshes'),
+            glob('meshes/*')),
+
         # Install RViz configs
         (os.path.join('share', package_name, 'rviz'),
             glob('rviz/*.rviz')),
