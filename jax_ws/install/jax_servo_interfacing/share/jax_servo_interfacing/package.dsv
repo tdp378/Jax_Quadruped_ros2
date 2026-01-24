@@ -4,6 +4,3 @@ source;share/jax_servo_interfacing/hook/pythonpath.sh
 source;share/jax_servo_interfacing/hook/ament_prefix_path.ps1
 source;share/jax_servo_interfacing/hook/ament_prefix_path.dsv
 source;share/jax_servo_interfacing/hook/ament_prefix_path.sh
-source;../../build/jax_servo_interfacing/share/jax_servo_interfacing/hook/pythonpath_develop.ps1
-source;../../build/jax_servo_interfacing/share/jax_servo_interfacing/hook/pythonpath_develop.dsv
-source;../../build/jax_servo_interfacing/share/jax_servo_interfacing/hook/pythonpath_develop.sh

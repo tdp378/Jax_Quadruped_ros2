@@ -1,4 +1,6 @@
 from setuptools import find_packages, setup
+from glob import glob
+import os
 
 package_name = 'jax_description'
 
@@ -10,20 +12,26 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+
+        # Install launch files
+        (os.path.join('share', package_name, 'launch'),
+            glob('launch/*.py')),
+
+        # Install URDF / xacro
+        (os.path.join('share', package_name, 'urdf'),
+            glob('urdf/*')),
+
+        # Install RViz configs
+        (os.path.join('share', package_name, 'rviz'),
+            glob('rviz/*.rviz')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='tdp378',
     maintainer_email='tdp378@yahoo.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='Jax quadruped robot description',
+    license='MIT',
     extras_require={
-        'test': [
-            'pytest',
-        ],
-    },
-    entry_points={
-        'console_scripts': [
-        ],
+        'test': ['pytest'],
     },
 )

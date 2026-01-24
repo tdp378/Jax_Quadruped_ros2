@@ -1,11 +1,11 @@
 Metadata-Version: 2.1
 Name: jax-description
 Version: 0.0.0
-Summary: TODO: Package description
+Summary: Jax quadruped robot description
 Home-page: UNKNOWN
 Maintainer: tdp378
 Maintainer-email: tdp378@yahoo.com
-License: TODO: License declaration
+License: MIT
 Platform: UNKNOWN
 Provides-Extra: test
 
