@@ -1,20 +1,28 @@
-# ROS 2 / colcon
-# ROS 2 / colcon
-build/ install/ log/
-# Python
-__pycache__/ *.pyc
-# Editor junk
-*.swp
-*.bak
-# ROS 2 build artifacts
+# =========================
+# ROS 2 / colcon artifacts
+# =========================
+build/
+install/
+log/
+
 jax_ws/build/
 jax_ws/install/
 jax_ws/log/
 
+**/build/
+**/install/
+**/log/
+
+# =========================
 # Python
+# =========================
 __pycache__/
 *.pyc
 
-# Editor junk
+# =========================
+# Editor / OS junk
+# =========================
 .vscode/
+*.swp
+*.bak
 .DS_Store
