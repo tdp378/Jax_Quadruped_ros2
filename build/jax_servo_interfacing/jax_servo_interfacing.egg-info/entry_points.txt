@@ -1,3 +1,0 @@
-[console_scripts]
-jax_servo_node = jax_servo_interfacing.jax_servo_node:main
-
