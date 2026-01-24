@@ -70,10 +70,8 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <visual>
     <origin xyz="0 0 -0.06"/>
     <geometry>
-      <mesh filename="package://jax_description/meshes/front_right_thigh.stl"
-          scale="1 1 1"/>
-       <!-- <cylinder length="0.12" radius="0.015"/> -->
-    </geometry>
+         <cylinder length="0.12" radius="0.015"/> 
+  </geometry>
   </visual>
 </link>
 
