@@ -1,0 +1,38 @@
+[0.516s] Invoking command in '/home/tdp378/Jax_Quadruped_ros2/jax_ws/src/jax_description': PYTHONPATH=/home/tdp378/Jax_Quadruped_ros2/build/jax_description/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tdp378/Jax_Quadruped_ros2/install/jax_description/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/jax_description build --build-base /home/tdp378/Jax_Quadruped_ros2/build/jax_description/build install --record /home/tdp378/Jax_Quadruped_ros2/build/jax_description/install.log --single-version-externally-managed install_data
+[0.652s] running egg_info
+[0.653s] creating ../../../build/jax_description/jax_description.egg-info
+[0.653s] writing ../../../build/jax_description/jax_description.egg-info/PKG-INFO
+[0.653s] writing dependency_links to ../../../build/jax_description/jax_description.egg-info/dependency_links.txt
+[0.654s] writing requirements to ../../../build/jax_description/jax_description.egg-info/requires.txt
+[0.654s] writing top-level names to ../../../build/jax_description/jax_description.egg-info/top_level.txt
+[0.654s] writing manifest file '../../../build/jax_description/jax_description.egg-info/SOURCES.txt'
+[0.655s] reading manifest file '../../../build/jax_description/jax_description.egg-info/SOURCES.txt'
+[0.655s] writing manifest file '../../../build/jax_description/jax_description.egg-info/SOURCES.txt'
+[0.656s] running build
+[0.656s] running build_py
+[0.656s] creating /home/tdp378/Jax_Quadruped_ros2/build/jax_description/build
+[0.656s] creating /home/tdp378/Jax_Quadruped_ros2/build/jax_description/build/lib
+[0.656s] creating /home/tdp378/Jax_Quadruped_ros2/build/jax_description/build/lib/jax_description
+[0.657s] copying jax_description/__init__.py -> /home/tdp378/Jax_Quadruped_ros2/build/jax_description/build/lib/jax_description
+[0.657s] running install
+[0.657s] running install_lib
+[0.658s] creating /home/tdp378/Jax_Quadruped_ros2/install/jax_description/lib/python3.10/site-packages/jax_description
+[0.658s] copying /home/tdp378/Jax_Quadruped_ros2/build/jax_description/build/lib/jax_description/__init__.py -> /home/tdp378/Jax_Quadruped_ros2/install/jax_description/lib/python3.10/site-packages/jax_description
+[0.658s] byte-compiling /home/tdp378/Jax_Quadruped_ros2/install/jax_description/lib/python3.10/site-packages/jax_description/__init__.py to __init__.cpython-310.pyc
+[0.659s] running install_data
+[0.659s] creating /home/tdp378/Jax_Quadruped_ros2/install/jax_description/share/ament_index
+[0.659s] creating /home/tdp378/Jax_Quadruped_ros2/install/jax_description/share/ament_index/resource_index
+[0.659s] creating /home/tdp378/Jax_Quadruped_ros2/install/jax_description/share/ament_index/resource_index/packages
+[0.659s] copying resource/jax_description -> /home/tdp378/Jax_Quadruped_ros2/install/jax_description/share/ament_index/resource_index/packages
+[0.659s] copying package.xml -> /home/tdp378/Jax_Quadruped_ros2/install/jax_description/share/jax_description
+[0.659s] creating /home/tdp378/Jax_Quadruped_ros2/install/jax_description/share/jax_description/launch
+[0.660s] copying launch/display.launch.py -> /home/tdp378/Jax_Quadruped_ros2/install/jax_description/share/jax_description/launch
+[0.660s] creating /home/tdp378/Jax_Quadruped_ros2/install/jax_description/share/jax_description/urdf
+[0.660s] copying urdf/jax.urdf.xacro -> /home/tdp378/Jax_Quadruped_ros2/install/jax_description/share/jax_description/urdf
+[0.660s] creating /home/tdp378/Jax_Quadruped_ros2/install/jax_description/share/jax_description/rviz
+[0.660s] copying rviz/jax.rviz -> /home/tdp378/Jax_Quadruped_ros2/install/jax_description/share/jax_description/rviz
+[0.660s] running install_egg_info
+[0.660s] Copying ../../../build/jax_description/jax_description.egg-info to /home/tdp378/Jax_Quadruped_ros2/install/jax_description/lib/python3.10/site-packages/jax_description-0.0.0-py3.10.egg-info
+[0.660s] running install_scripts
+[0.673s] writing list of installed files to '/home/tdp378/Jax_Quadruped_ros2/build/jax_description/install.log'
+[0.687s] Invoked command in '/home/tdp378/Jax_Quadruped_ros2/jax_ws/src/jax_description' returned '0': PYTHONPATH=/home/tdp378/Jax_Quadruped_ros2/build/jax_description/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tdp378/Jax_Quadruped_ros2/install/jax_description/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/jax_description build --build-base /home/tdp378/Jax_Quadruped_ros2/build/jax_description/build install --record /home/tdp378/Jax_Quadruped_ros2/build/jax_description/install.log --single-version-externally-managed install_data

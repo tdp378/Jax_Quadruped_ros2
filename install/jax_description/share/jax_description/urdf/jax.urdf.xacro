@@ -30,8 +30,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <collision>
   <geometry>
-    <mesh filename="package://jax_description/meshes/base_link.stl"
-            scale="0.001 0.001 0.001"/>
+    <box size="0.25 0.15 0.05"/>
   </geometry> 
 </collision>
 

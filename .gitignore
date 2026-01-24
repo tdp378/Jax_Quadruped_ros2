@@ -6,3 +6,15 @@ __pycache__/ *.pyc
 # Editor junk
 *.swp
 *.bak
+# ROS 2 build artifacts
+jax_ws/build/
+jax_ws/install/
+jax_ws/log/
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor junk
+.vscode/
+.DS_Store
