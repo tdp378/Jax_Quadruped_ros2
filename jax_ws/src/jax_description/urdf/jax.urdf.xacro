@@ -36,7 +36,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <origin xyz="0 0 0" rpy="0 0 0"/>
   <geometry>
     <mesh filename="package://jax_description/meshes/base_link.stl"
-          scale=".001 .001 .001"/>
+          scale=".1 .1 .1"/>
   </geometry>
   <material name="white"/>
 </visual>
