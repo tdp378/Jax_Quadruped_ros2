@@ -19,19 +19,24 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
     <color rgba="0.1 0.1 0.1 1.0"/> 
   </material>
 
-  <material name="white">
+<material name="white">
   <color rgba="1 1 1 1"/>
+</material>
+
+<material name="debug">
+  <color rgba="1 0 0 0.4"/>
+  
 </material>
 
 
 <!-- Base link -->
 <link name="base_link">
 
-  <visual>
+   <visual>
   <origin xyz="0 0 0" rpy="0 0 0"/>
   <geometry>
     <mesh filename="package://jax_description/meshes/base_link.stl"
-          scale="1 1 1"/>
+          scale=".001 .001 .001"/>
   </geometry>
   <material name="white"/>
 </visual>
@@ -40,7 +45,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <origin xyz="0 0 0" rpy="0 0 0"/>
   <geometry>
     <mesh filename="package://jax_description/meshes/base_collision.stl"
-          scale="1 1 1"/>
+          scale=".001 .001 .001"/>
   </geometry>
 </collision>
 
