@@ -9,7 +9,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <joint name="world_to_base" type="fixed">
     <parent link="world"/>
     <child link="base_link"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 0.23" rpy="0 0 0"/>
   </joint>
 
 
@@ -36,7 +36,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <origin xyz="0 0 0" rpy="0 0 0"/>
   <geometry>
     <mesh filename="package://jax_description/meshes/base_link.stl"
-          scale=".1 .1 .1"/>
+          scale="1 1 1"/>
   </geometry>
   <material name="white"/>
 </visual>
@@ -125,6 +125,27 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <limit lower="0" upper="1.4" effort="1.0" velocity="1.0"/>
 </joint>
 
+<link name="front_right_foot">
+
+    <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://jax_description/meshes/foot.stl"
+            scale=".001 .001 .001"/>
+    </geometry>
+    <material name="black">
+    </material>
+  </visual>
+
+  </link>
+
+<joint name="front_right_ankle_joint" type="fixed">
+  <parent link="front_right_calf"/>
+  <child link="front_right_foot"/>
+  <origin xyz="0.095 -0.044 -0.1" rpy="0 0 0"/>
+</joint>
+
+
 <!-- FRONT LEFT LEG -->
 
 <link name="front_left_hip">
@@ -184,6 +205,24 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <axis xyz="0 -1 0"/>
   <limit lower="0" upper="1.4" effort="1.0" velocity="1.0"/>
 </joint>
+
+<link name="front_left_foot">
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://jax_description/meshes/foot.stl"
+            scale=".001 .001 .001"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+</link>
+
+<joint name="front_left_ankle_joint" type="fixed">
+  <parent link="front_left_calf"/>
+  <child link="front_left_foot"/>
+  <origin xyz="0.095 0.044 -0.1" rpy="0 0 0"/>
+</joint>
+
 
 
 <!-- REAR RIGHT LEG -->
@@ -245,6 +284,24 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <limit lower="0" upper="1.4" effort="1.0" velocity="1.0"/>
 </joint>
 
+<link name="rear_right_foot">
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://jax_description/meshes/foot.stl"
+            scale=".001 .001 .001"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+</link>
+
+<joint name="rear_right_ankle_joint" type="fixed">
+  <parent link="rear_right_calf"/>
+  <child link="rear_right_foot"/>
+  <origin xyz="0.095 -0.044 -0.1" rpy="0 0 0"/>
+</joint>
+
+
 
 <!-- REAR LEFT LEG -->
 
@@ -303,6 +360,23 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <origin xyz="0 0 -0.13"/>
   <axis xyz="0 -1 0"/>
   <limit lower="0" upper="1.4" effort="1.0" velocity="1.0"/>
+</joint>
+
+<link name="rear_left_foot">
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://jax_description/meshes/foot.stl"
+            scale=".001 .001 .001"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+</link>
+
+<joint name="rear_left_ankle_joint" type="fixed">
+  <parent link="rear_left_calf"/>
+  <child link="rear_left_foot"/>
+  <origin xyz="0.095 0.044 -0.1" rpy="0 0 0"/>
 </joint>
 
 
