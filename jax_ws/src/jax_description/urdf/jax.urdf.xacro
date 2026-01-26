@@ -44,8 +44,7 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 <collision>
   <origin xyz="0 0 0" rpy="0 0 0"/>
   <geometry>
-    <mesh filename="package://jax_description/meshes/base_collision.stl"
-          scale=".001 .001 .001"/>
+    <box size="0.26 0.14 0.06"/>
   </geometry>
 </collision>
 
@@ -73,6 +72,23 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
       </geometry>
       <material name="black"/>
     </visual>
+
+        <collision>
+      <origin xyz="0 -0.02 0"/>
+    <geometry>
+      <sphere radius="0.025"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.15"/>
+    <origin xyz="0 -0.02 0"/>
+    <inertia
+      ixx="0.0002" ixy="0" ixz="0"
+      iyy="0.0002" iyz="0"
+      izz="0.0002"/>
+  </inertial>
+
   </link>
 
 
@@ -94,8 +110,24 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   </geometry>
     <material name="white"/>
   </visual>
-</link>
 
+ <collision>
+    <origin xyz="0 -.039 -0.065"/>
+    <geometry>
+      <cylinder radius="0.012" length="0.15"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.35"/>
+    <origin xyz="0 -0.39 -0.065"/>
+    <inertia
+      ixx="0.001" ixy="0" ixz="0"
+      iyy="0.001" iyz="0"
+      izz="0.0003"/>
+  </inertial>
+
+</link>
 
 
   <joint name="front_right_thigh_joint" type="revolute">
@@ -115,6 +147,24 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
       </geometry>
       <material name="black"/>
     </visual> 
+
+      <collision>
+    <origin xyz="0.05 -0.043 -0.045" rpy="0 -0.85 0"/>
+    <geometry>
+      <cylinder radius="0.012" length="0.13"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.25"/>
+    <origin xyz="0.05 -0.043 -0.045" rpy="0 -0.85 0"/>
+    <inertia
+      ixx="0.0007" ixy="0" ixz="0"
+      iyy="0.0007" iyz="0"
+      izz="0.0002"/>
+  </inertial>
+
+
    </link>
 
   <joint name="front_right_knee_joint" type="revolute">
@@ -137,6 +187,24 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
     </material>
   </visual>
 
+     <collision>
+    <origin xyz="0 0 0.005"/>
+    <geometry>
+      <sphere radius="0.010"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.08"/>
+    <origin xyz="0 0 0.005"/>
+    <inertia
+      ixx="0.00005" ixy="0" ixz="0"
+      iyy="0.00005" iyz="0"
+      izz="0.00005"/>
+  </inertial>
+
+
+
   </link>
 
 <joint name="front_right_ankle_joint" type="fixed">
@@ -150,15 +218,29 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <link name="front_left_hip">
   <visual>
-    <origin xyz="0 0.035 0.01" rpy="0 0 0"/> 
+    <origin xyz="0 0.035 0.01"/>
     <geometry>
       <mesh filename="package://jax_description/meshes/left_hip.stl"
             scale=".001 .001 .001"/>
     </geometry>
     <material name="black"/>
   </visual>
-</link>
 
+  <collision>
+    <origin xyz="0 0.02 0"/>
+    <geometry>
+      <sphere radius="0.025"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.15"/>
+    <origin xyz="0 0.02 0"/>
+    <inertia ixx="0.0002" ixy="0" ixz="0"
+             iyy="0.0002" iyz="0"
+             izz="0.0002"/>
+  </inertial>
+</link>
 
 <joint name="front_left_hip_joint" type="revolute">
   <parent link="base_link"/>
@@ -170,13 +252,28 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <link name="front_left_thigh">
   <visual>
-    <origin xyz="0 0.038 0" rpy="0 0 0"/>
+    <origin xyz="0 0.038 0"/>
     <geometry>
       <mesh filename="package://jax_description/meshes/left_thigh.stl"
             scale=".001 .001 .001"/>
     </geometry>
     <material name="white"/>
   </visual>
+
+  <collision>
+    <origin xyz="0 0.039 -0.065"/>
+    <geometry>
+      <cylinder radius="0.012" length="0.15"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.35"/>
+    <origin xyz="0 0.039 -0.065"/>
+    <inertia ixx="0.001" ixy="0" ixz="0"
+             iyy="0.001" iyz="0"
+             izz="0.0003"/>
+  </inertial>
 </link>
 
 <joint name="front_left_thigh_joint" type="revolute">
@@ -189,13 +286,28 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <link name="front_left_calf">
   <visual>
-    <origin xyz="0 0.048 0" rpy="0 0 0"/>
+    <origin xyz="0 0.048 0"/>
     <geometry>
       <mesh filename="package://jax_description/meshes/left_calf.stl"
             scale=".001 .001 .001"/>
     </geometry>
     <material name="black"/>
   </visual>
+
+  <collision>
+    <origin xyz="0.05 0.043 -0.045" rpy="0 -0.85 0"/>
+    <geometry>
+      <cylinder radius="0.012" length="0.13"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.25"/>
+    <origin xyz="0.05 0.043 -0.045" rpy="0 -0.85 0"/>
+    <inertia ixx="0.0007" ixy="0" ixz="0"
+             iyy="0.0007" iyz="0"
+             izz="0.0002"/>
+  </inertial>
 </link>
 
 <joint name="front_left_knee_joint" type="revolute">
@@ -208,13 +320,27 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <link name="front_left_foot">
   <visual>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://jax_description/meshes/foot.stl"
             scale=".001 .001 .001"/>
     </geometry>
     <material name="black"/>
   </visual>
+
+  <collision>
+    <origin xyz="0 0 0.005"/>
+    <geometry>
+      <sphere radius="0.010"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.08"/>
+    <origin xyz="0 0 0.005"/>
+    <inertia ixx="0.00005" ixy="0" ixz="0"
+             iyy="0.00005" iyz="0"
+             izz="0.00005"/>
+  </inertial>
 </link>
 
 <joint name="front_left_ankle_joint" type="fixed">
@@ -223,19 +349,32 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <origin xyz="0.095 0.044 -0.1" rpy="0 0 0"/>
 </joint>
 
-
-
 <!-- REAR RIGHT LEG -->
 
 <link name="rear_right_hip">
   <visual>
-    <origin xyz="0 -0.035 0.01" rpy="0 0 0"/> 
+    <origin xyz="0 -0.035 0.01"/>
     <geometry>
       <mesh filename="package://jax_description/meshes/right_hip.stl"
             scale=".001 .001 .001"/>
     </geometry>
     <material name="black"/>
   </visual>
+
+  <collision>
+    <origin xyz="0 -0.02 0"/>
+    <geometry>
+      <sphere radius="0.025"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.15"/>
+    <origin xyz="0 -0.02 0"/>
+    <inertia ixx="0.0002" ixy="0" ixz="0"
+             iyy="0.0002" iyz="0"
+             izz="0.0002"/>
+  </inertial>
 </link>
 
 <joint name="rear_right_hip_joint" type="revolute">
@@ -248,13 +387,28 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <link name="rear_right_thigh">
   <visual>
-    <origin xyz="0 -0.038 0" rpy="0 0 0"/>
+    <origin xyz="0 -0.038 0"/>
     <geometry>
       <mesh filename="package://jax_description/meshes/right_thigh.stl"
             scale=".001 .001 .001"/>
     </geometry>
     <material name="white"/>
   </visual>
+
+  <collision>
+    <origin xyz="0 -0.039 -0.065"/>
+    <geometry>
+      <cylinder radius="0.012" length="0.15"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.35"/>
+    <origin xyz="0 -0.039 -0.065"/>
+    <inertia ixx="0.001" ixy="0" ixz="0"
+             iyy="0.001" iyz="0"
+             izz="0.0003"/>
+  </inertial>
 </link>
 
 <joint name="rear_right_thigh_joint" type="revolute">
@@ -267,13 +421,28 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <link name="rear_right_calf">
   <visual>
-    <origin xyz="0 -0.048 0" rpy="0 0 0"/>
+    <origin xyz="0 -0.048 0"/>
     <geometry>
       <mesh filename="package://jax_description/meshes/right_calf.stl"
             scale=".001 .001 .001"/>
     </geometry>
     <material name="black"/>
   </visual>
+
+  <collision>
+    <origin xyz="0.05 -0.043 -0.045" rpy="0 -0.85 0"/>
+    <geometry>
+      <cylinder radius="0.012" length="0.13"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.25"/>
+    <origin xyz="0.05 -0.043 -0.045" rpy="0 -0.85 0"/>
+    <inertia ixx="0.0007" ixy="0" ixz="0"
+             iyy="0.0007" iyz="0"
+             izz="0.0002"/>
+  </inertial>
 </link>
 
 <joint name="rear_right_knee_joint" type="revolute">
@@ -293,6 +462,22 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
     </geometry>
     <material name="black"/>
   </visual>
+
+  <collision>
+    <origin xyz="0 0 0.005"/>
+    <geometry>
+      <sphere radius="0.010"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.08"/>
+    <origin xyz="0 0 0.005"/>
+    <inertia
+      ixx="0.00005" ixy="0" ixz="0"
+      iyy="0.00005" iyz="0"
+      izz="0.00005"/>
+  </inertial>
 </link>
 
 <joint name="rear_right_ankle_joint" type="fixed">
@@ -301,19 +486,33 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <origin xyz="0.095 -0.044 -0.1" rpy="0 0 0"/>
 </joint>
 
-
-
 <!-- REAR LEFT LEG -->
 
 <link name="rear_left_hip">
   <visual>
-    <origin xyz="0 0.035 0.01" rpy="0 0 0"/> 
+    <origin xyz="0 0.035 0.01"/>
     <geometry>
       <mesh filename="package://jax_description/meshes/left_hip.stl"
             scale=".001 .001 .001"/>
     </geometry>
     <material name="black"/>
   </visual>
+
+  <collision>
+    <origin xyz="0 0.02 0"/>
+    <geometry>
+      <sphere radius="0.025"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.15"/>
+    <origin xyz="0 0.02 0"/>
+    <inertia
+      ixx="0.0002" ixy="0" ixz="0"
+      iyy="0.0002" iyz="0"
+      izz="0.0002"/>
+  </inertial>
 </link>
 
 <joint name="rear_left_hip_joint" type="revolute">
@@ -326,13 +525,29 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <link name="rear_left_thigh">
   <visual>
-    <origin xyz="0 0.038 0" rpy="0 0 0"/>
+    <origin xyz="0 0.038 0"/>
     <geometry>
       <mesh filename="package://jax_description/meshes/left_thigh.stl"
             scale=".001 .001 .001"/>
     </geometry>
     <material name="white"/>
   </visual>
+
+  <collision>
+    <origin xyz="0 0.039 -0.065"/>
+    <geometry>
+      <cylinder radius="0.012" length="0.15"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.35"/>
+    <origin xyz="0 0.039 -0.065"/>
+    <inertia
+      ixx="0.001" ixy="0" ixz="0"
+      iyy="0.001" iyz="0"
+      izz="0.0003"/>
+  </inertial>
 </link>
 
 <joint name="rear_left_thigh_joint" type="revolute">
@@ -345,13 +560,29 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <link name="rear_left_calf">
   <visual>
-    <origin xyz="0 0.048 0" rpy="0 0 0"/>
+    <origin xyz="0 0.048 0"/>
     <geometry>
       <mesh filename="package://jax_description/meshes/left_calf.stl"
             scale=".001 .001 .001"/>
     </geometry>
     <material name="black"/>
   </visual>
+
+  <collision>
+    <origin xyz="0.05 0.043 -0.045" rpy="0 -0.85 0"/>
+    <geometry>
+      <cylinder radius="0.012" length="0.13"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.25"/>
+    <origin xyz="0.05 0.043 -0.045" rpy="0 -0.85 0"/>
+    <inertia
+      ixx="0.0007" ixy="0" ixz="0"
+      iyy="0.0007" iyz="0"
+      izz="0.0002"/>
+  </inertial>
 </link>
 
 <joint name="rear_left_knee_joint" type="revolute">
@@ -364,13 +595,28 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <link name="rear_left_foot">
   <visual>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://jax_description/meshes/foot.stl"
             scale=".001 .001 .001"/>
     </geometry>
     <material name="black"/>
   </visual>
+
+  <collision>
+    <origin xyz="0 0 0.005"/>
+    <geometry>
+      <sphere radius="0.010"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.08"/>
+    <origin xyz="0 0 0.005"/>
+    <inertia
+      ixx="0.00005" ixy="0" ixz="0"
+      iyy="0.00005" iyz="0"
+      izz="0.00005"/>
+  </inertial>
 </link>
 
 <joint name="rear_left_ankle_joint" type="fixed">
@@ -378,6 +624,5 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <child link="rear_left_foot"/>
   <origin xyz="0.095 0.044 -0.1" rpy="0 0 0"/>
 </joint>
-
 
 </robot>
