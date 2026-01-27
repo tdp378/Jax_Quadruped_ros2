@@ -28,6 +28,9 @@ setup(
         # Install RViz configs
         (os.path.join('share', package_name, 'rviz'),
             glob('rviz/*.rviz')),
+        # Install Controllers configs
+        (os.path.join('share', package_name, 'config'),
+             glob('config/*')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
