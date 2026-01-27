@@ -132,7 +132,7 @@
 
   <ros2_control name="JaxGazeboSystem" type="system">
     <hardware>
-      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+      <plugin>ign_ros2_control/IgnitionSystem<</plugin>
     </hardware>
     <xacro:macro name="joint_interface" params="name">
       <joint name="${name}">
@@ -148,11 +148,11 @@
     <xacro:joint_interface name="rear_left_hip_joint"/><xacro:joint_interface name="rear_left_thigh_joint"/><xacro:joint_interface name="rear_left_knee_joint"/>
   </ros2_control>
 
-  <gazebo>
-    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so"/>
-      <parameters>$(find jax_description)/config/controllers.yaml</parameters>
-    </plugin>
-  </gazebo>
+<gazebo>
+  <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnRos2ControlPlugin">
+    <parameters>$(find jax_description)/config/controllers.yaml</parameters>
+  </plugin>
+</gazebo>
 
   <link name="imu_link"> 
     <inertial>
