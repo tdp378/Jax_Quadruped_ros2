@@ -150,6 +150,8 @@
 
   <gazebo>
     <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so"/>
+      <parameters>$(find jax_description)/config/controllers.yaml</parameters>
+    </plugin>
   </gazebo>
 
   <link name="imu_link"> 
