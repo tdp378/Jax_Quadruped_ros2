@@ -1,65 +1,64 @@
-<?xml version="1.0"?> 
-<robot name="jax" 
-xmlns:xacro="http://www.ros.org/wiki/xacro">
+<?xml version="1.0"?>
+<robot name="jax" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- World link -->
+  <!-- ================= WORLD ================= -->
+
   <link name="world"/>
 
-  <!-- Fixed joint to base -->
   <joint name="world_to_base" type="fixed">
     <parent link="world"/>
     <child link="base_link"/>
-    <origin xyz="0 0 0.23" rpy="0 0 0"/>
+    <origin xyz="0 0 0.23"/>
   </joint>
 
+  <!-- ================= MATERIALS ================= -->
 
+  <material name="black"><color rgba="0.1 0.1 0.1 1"/></material>
+  <material name="white"><color rgba="1 1 1 1"/></material>
+  <material name="debug"><color rgba="1 0 0 0.4"/></material>
 
-  <!-- Materials -->
-<material name="black">
-    <color rgba="0.1 0.1 0.1 1.0"/> 
-  </material>
+  <!-- ================= BASE ================= -->
 
-<material name="white">
-  <color rgba="1 1 1 1"/>
-</material>
-
-<material name="debug">
-  <color rgba="1 0 0 0.4"/>
-  
-</material>
-
-
-<!-- Base link -->
-<link name="base_link">
-
-   <visual>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+  <link name="base_link">
+    <visual>
       <geometry>
         <mesh filename="package://jax_description/meshes/base_link.stl"
-          scale=".001 .001 .001"/>
-     </geometry>
-    <material name="white"/>
+         scale=".001 .001 .001"/>
+      </geometry>
+      <material name="white"/>
     </visual>
 
-  <collision>
-  <origin xyz="0 0 0" rpy="0 0 0"/>
-  <geometry>
-    <box size="0.26 0.14 0.06"/>
-  </geometry>
-  </collision>
+    <collision>
+      <geometry>
+        <box size="0.26 0.14 0.06"/>
+      </geometry>
+    </collision>
 
-  <inertial> 
-    <mass value="3.0"/>
+    <inertial>
+      <mass value="3.0"/>
+      <inertia ixx="0.02" iyy="0.04" izz="0.05"
+               ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+
+<!-- IMU LINK -->
+<link name="imu_link">
+  <inertial>
+    <mass value="0.001"/>
     <origin xyz="0 0 0"/>
     <inertia
-      ixx="0.02" ixy="0.0" ixz="0.0" 
-      iyy="0.04" iyz="0.0"
-      izz="0.05"/>
-  </inertial> 
-
+      ixx="1e-6" ixy="0" ixz="0"
+      iyy="1e-6" iyz="0"
+      izz="1e-6"/>
+  </inertial>
 </link>
-
   
+<joint name="base_to_imu" type="fixed">
+  <parent link="base_link"/>
+  <child link="imu_link"/>
+  <origin xyz="0 0 0.03" rpy="0 0 0"/>
+</joint>
 
   <!-- FRONT RIGHT LEG -->
 
@@ -665,5 +664,109 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
   <kp>100000</kp>
   <kd>100</kd>
 </gazebo>
+
+ <!-- ========================================================= -->
+  <!-- ================= ROS2 CONTROL ========================== -->
+  <!-- ========================================================= -->
+
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+
+    <!-- Front Right -->
+    <joint name="front_right_hip_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="front_right_thigh_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="front_right_knee_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <!-- Front Left -->
+    <joint name="front_left_hip_joint"/>
+    <joint name="front_left_thigh_joint"/>
+    <joint name="front_left_knee_joint"/>
+
+    <!-- Rear Right -->
+    <joint name="rear_right_hip_joint"/>
+    <joint name="rear_right_thigh_joint"/>
+    <joint name="rear_right_knee_joint"/>
+
+    <!-- Rear Left -->
+    <joint name="rear_left_hip_joint"/>
+    <joint name="rear_left_thigh_joint"/>
+    <joint name="rear_left_knee_joint"/>
+  </ros2_control>
+
+  <!-- ================= TRANSMISSIONS ================= -->
+
+  <xacro:macro name="simple_transmission" params="joint">
+    <transmission name="${joint}_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${joint}">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${joint}_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+
+  <!-- Apply to all actuated joints -->
+  <xacro:simple_transmission joint="front_right_hip_joint"/>
+  <xacro:simple_transmission joint="front_right_thigh_joint"/>
+  <xacro:simple_transmission joint="front_right_knee_joint"/>
+
+  <xacro:simple_transmission joint="front_left_hip_joint"/>
+  <xacro:simple_transmission joint="front_left_thigh_joint"/>
+  <xacro:simple_transmission joint="front_left_knee_joint"/>
+
+  <xacro:simple_transmission joint="rear_right_hip_joint"/>
+  <xacro:simple_transmission joint="rear_right_thigh_joint"/>
+  <xacro:simple_transmission joint="rear_right_knee_joint"/>
+
+  <xacro:simple_transmission joint="rear_left_hip_joint"/>
+  <xacro:simple_transmission joint="rear_left_thigh_joint"/>
+  <xacro:simple_transmission joint="rear_left_knee_joint"/>
+
+  <!-- ================= GAZEBO PLUGIN ================= -->
+
+  <gazebo>
+    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so"/>
+  </gazebo>
+
+<gazebo reference="imu_link">
+  <sensor name="imu_sensor" type="imu">
+    <always_on>true</always_on>
+    <update_rate>400</update_rate>
+    <visualize>false</visualize>
+
+    <imu>
+      <angular_velocity>
+        <noise type="gaussian">
+          <mean>0.0</mean>
+          <stddev>0.0002</stddev>
+        </noise>
+      </angular_velocity>
+
+      <linear_acceleration>
+        <noise type="gaussian">
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </linear_acceleration>
+    </imu>
+  </sensor>
+</gazebo>
+
 
 </robot>
