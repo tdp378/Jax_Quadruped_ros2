@@ -30,7 +30,7 @@
 
     <link name="${prefix}_hip">
       <visual>
-        <origin xyz="0 ${-0.035 * y_reflect} 0.01"/>
+        <origin xyz="0 ${0.01 * y_reflect} 0.01"/>
         <geometry><mesh filename="package://jax_description/meshes/${side}_hip.stl" scale=".001 .001 .001"/></geometry>
         <material name="black"/>
       </visual>
@@ -48,7 +48,7 @@
     <joint name="${prefix}_hip_joint" type="revolute">
       <parent link="base_link"/>
       <child link="${prefix}_hip"/>
-      <origin xyz="${0.11 * x_reflect} ${0.06 * y_reflect} -0.01"/>
+     <origin xyz="${0.11 * x_reflect} ${0.085 * y_reflect} -0.01"/>
       <axis xyz="1 0 0"/>
       <limit lower="-0.6" upper="0.6" effort="2.0" velocity="1.5"/>
       <dynamics damping="0.5" friction="0.0"/>
@@ -74,7 +74,7 @@
     <joint name="${prefix}_thigh_joint" type="revolute">
       <parent link="${prefix}_hip"/>
       <child link="${prefix}_thigh"/>
-      <origin xyz="0 0 0.01"/>
+      <origin xyz="0 ${0.045 * y_reflect} 0"/>
       <axis xyz="0 -1 0"/>
       <limit lower="-1.2" upper="1.2" effort="3.0" velocity="2.0"/>
       <dynamics damping="0.7" friction="0.0"/>
@@ -100,7 +100,7 @@
     <joint name="${prefix}_knee_joint" type="revolute">
       <parent link="${prefix}_thigh"/>
       <child link="${prefix}_calf"/>
-      <origin xyz="0 0 -0.13"/>
+      <origin xyz="0 ${0.02 * y_reflect} -0.13"/>
       <axis xyz="0 -1 0"/>
       <limit lower="0" upper="1.4" effort="4.0" velocity="2.5"/>
       <dynamics damping="0.9" friction="0.0"/>
@@ -132,7 +132,7 @@
 
   <ros2_control name="JaxGazeboSystem" type="system">
     <hardware>
-      <plugin>ign_ros2_control/IgnitionSystem<</plugin>
+      <plugin>ign_ros2_control/IgnitionSystem</plugin>
     </hardware>
     <xacro:macro name="joint_interface" params="name">
       <joint name="${name}">
