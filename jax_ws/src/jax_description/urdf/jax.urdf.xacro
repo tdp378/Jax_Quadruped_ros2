@@ -18,11 +18,11 @@
       <material name="white"/>
     </visual>
     <collision>
-      <geometry><box size="0.26 0.14 0.06"/></geometry>
+      <geometry><box size="0.35 0.14 0.08"/></geometry>
     </collision>
     <inertial>
-      <mass value="3.0"/>
-      <inertia ixx="0.02" iyy="0.04" izz="0.05" ixy="0" ixz="0" iyz="0"/>
+      <mass value="4.0"/>
+      <inertia ixx="0.03" iyy="0.06" izz="0.07" ixy="0" ixz="0" iyz="0"/>
     </inertial>
   </link>
 
@@ -48,7 +48,7 @@
     <joint name="${prefix}_hip_joint" type="revolute">
       <parent link="base_link"/>
       <child link="${prefix}_hip"/>
-     <origin xyz="${0.11 * x_reflect} ${0.085 * y_reflect} -0.01"/>
+     <origin xyz="${(0.11 * x_reflect) -.005} ${0.085 * y_reflect} 0.0"/>
       <axis xyz="1 0 0"/>
       <limit lower="-0.6" upper="0.6" effort="2.0" velocity="1.5"/>
       <dynamics damping="0.5" friction="0.0"/>
